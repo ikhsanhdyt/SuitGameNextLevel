@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Bermain suit melawan sesama\npemain"
+            android:text="@string/onboarding_txt_intro1"
             android:textAlignment="center"
             android:textSize="18sp" />
 
