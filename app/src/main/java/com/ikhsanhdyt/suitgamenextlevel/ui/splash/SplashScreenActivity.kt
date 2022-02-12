@@ -1,11 +1,11 @@
-package com.ikhsanhdyt.suitgamenextlevel.splash
+package com.ikhsanhdyt.suitgamenextlevel.ui.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.ikhsanhdyt.suitgamenextlevel.R
-import com.ikhsanhdyt.suitgamenextlevel.landingPage.LandingPageActivity
+import com.ikhsanhdyt.suitgamenextlevel.ui.landingPage.LandingPageActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

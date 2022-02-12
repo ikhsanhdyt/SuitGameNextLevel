@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuitGameNextLevel">
         <activity
-            android:name=".landingPage.LandingPageActivity"
+            android:name="com.ikhsanhdyt.suitgamenextlevel.ui.landingPage.LandingPageActivity"
             android:label="My Landing Page"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.menu.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".splash.SplashScreenActivity"
+            android:name="com.ikhsanhdyt.suitgamenextlevel.ui.splash.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
