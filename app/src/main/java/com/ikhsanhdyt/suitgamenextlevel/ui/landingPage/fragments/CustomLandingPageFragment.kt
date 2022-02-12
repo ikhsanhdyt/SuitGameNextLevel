@@ -31,10 +31,6 @@ class CustomLandingPageFragment : Fragment() {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     fun goToMenuGame() {
         if (binding.etName.text.isNotEmpty()) {
             playerSharedPref?.playerName = binding.etName.text.toString().trim()

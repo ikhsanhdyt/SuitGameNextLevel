@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/iv_logo"
@@ -14,15 +15,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/ll_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo">
+
+        <TextView
+            android:id="@+id/tv_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_black"
+            android:text="player 1"
+            android:textSize="18sp" />
 
         <FrameLayout
             android:id="@+id/fl_btn_left_batu"
@@ -81,18 +89,27 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/ll_enemy"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo">
 
+        <TextView
+            android:id="@+id/tv_enemy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_black"
+            android:text="COM"
+            android:textSize="18sp" />
+
         <FrameLayout
             android:id="@+id/fl_btn_right_batu"
+
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -147,84 +164,39 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:fontFamily="serif-monospace"
-        android:text="@string/txt_vs"
-        android:textColor="@color/black"
-        android:textSize="78sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
-
     <ImageView
         android:id="@+id/iv_vs"
-        android:visibility="visible"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/ic_versus"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/ll_enemy"
+        app:layout_constraintStart_toEndOf="@+id/ll_player"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
 
-    <TextView
-        android:id="@+id/tv_p1_win"
-        android:visibility="gone"
-        android:text="@string/txt_p1win"
-        android:textSize="44sp"
-        android:textFontWeight="@integer/material_motion_duration_long_2"
-        android:textColor="@color/teal_200"
+    <Button
+        android:id="@+id/tv_select_game_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo"
-        />
+        android:background="@color/red_com"
+        android:text="SELECT"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_player" />
 
-    <TextView
-        android:id="@+id/tv_p2_win"
-        android:visibility="gone"
-        android:text="@string/txt_p2win"
-        android:textSize="44sp"
-        android:textFontWeight="@integer/material_motion_duration_long_2"
-        android:textColor="@color/teal_200"
+    <Button
+        android:id="@+id/tv_select_game_enemy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo"
-        />
-
-    <TextView
-        android:id="@+id/tv_draw"
-        android:visibility="gone"
-        android:text="@string/txt_draw"
-        android:textSize="44sp"
-        android:textFontWeight="@integer/material_motion_duration_long_2"
-        android:textColor="@color/teal_200"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo"
-        />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fbtn_refresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/refresh"
+        android:background="@color/red_com"
+        android:text="SELECT"
+        android:textColor="@color/white"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_enemy" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

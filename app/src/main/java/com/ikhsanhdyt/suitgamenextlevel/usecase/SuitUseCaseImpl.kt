@@ -1,6 +1,6 @@
-package com.ikhsanhdyt.usecase
+package com.ikhsanhdyt.suitgamenextlevel.usecase
 
-import enum.SuitCharacter
+import com.ikhsanhdyt.suitgamenextlevel.enum.SuitCharacter
 
 class SuitUseCaseImpl : SuitUseCase {
 

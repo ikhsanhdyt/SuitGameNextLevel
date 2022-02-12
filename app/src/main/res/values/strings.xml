@@ -12,4 +12,5 @@
     <string name="txt_p1win">P1 WINS</string>
     <string name="txt_p2win">P2 WINS</string>
     <string name="txt_draw">DRAW</string>
+    <string name="text_toast_player_1_turn">Player 1 turn</string>
 </resources>

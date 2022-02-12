@@ -32,17 +32,17 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun setNameOnTitle() {
-
+        val playerName = PlayerSharedPref(this).playerName
         binding.tvTitleCom.text =
             getString(
                 R.string.tv_title_com,
-                PlayerSharedPref(this).playerName
+                playerName
             )
 
         binding.tvTitlePlayer.text =
             getString(
                 R.string.tv_title_player,
-                PlayerSharedPref(this).playerName
+                playerName
             )
     }
 }

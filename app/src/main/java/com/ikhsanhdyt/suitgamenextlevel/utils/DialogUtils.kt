@@ -1,4 +1,4 @@
-package com.ikhsanhdyt.utils
+package com.ikhsanhdyt.suitgamenextlevel.utils
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
