@@ -6,4 +6,10 @@
     <string name="onboarding_txt_insert_name">Tuliskan namamu di bawah</string>
     <string name="onboarding_txt_intro1">Bermain suit melawan sesama\npemain</string>
     <string name="onboarding_txt_intro2">Bermain suit melawan sesama\nkomputer</string>
+    <string name="tv_title_player">%s \nVersus Player</string>
+    <string name="tv_title_com">%s \nVersus Computer</string>
+    <string name="txt_vs">VS</string>
+    <string name="txt_p1win">P1 WINS</string>
+    <string name="txt_p2win">P2 WINS</string>
+    <string name="txt_draw">DRAW</string>
 </resources>

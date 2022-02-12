@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documents/StudioProjects/Binar/Chapter5/SuitGameNextLevel/app/src/main/res/drawable/dialog_bg.xml" value="0.1" />
+        <entry key="..\:/Documents/StudioProjects/Binar/Chapter5/SuitGameNextLevel/app/src/main/res/layout/activity_game.xml" value="0.25" />
         <entry key="..\:/Documents/StudioProjects/Binar/Chapter5/SuitGameNextLevel/app/src/main/res/layout/activity_landing_page.xml" value="0.38697916666666665" />
         <entry key="..\:/Documents/StudioProjects/Binar/Chapter5/SuitGameNextLevel/app/src/main/res/layout/activity_main.xml" value="0.18819655521783182" />
         <entry key="..\:/Documents/StudioProjects/Binar/Chapter5/SuitGameNextLevel/app/src/main/res/layout/activity_menu.xml" value="0.38697916666666665" />
         <entry key="..\:/Documents/StudioProjects/Binar/Chapter5/SuitGameNextLevel/app/src/main/res/layout/activity_splash_screen.xml" value="0.38697916666666665" />
+        <entry key="..\:/Documents/StudioProjects/Binar/Chapter5/SuitGameNextLevel/app/src/main/res/layout/dialog_winner.xml" value="0.22" />
         <entry key="..\:/Documents/StudioProjects/Binar/Chapter5/SuitGameNextLevel/app/src/main/res/layout/fragment_custom_landing_page.xml" value="0.38697916666666665" />
         <entry key="..\:/Documents/StudioProjects/Binar/Chapter5/SuitGameNextLevel/app/src/main/res/layout/intro_landing_page_1.xml" value="0.38697916666666665" />
         <entry key="..\:/Documents/StudioProjects/Binar/Chapter5/SuitGameNextLevel/app/src/main/res/layout/intro_landing_page_2.xml" value="0.38697916666666665" />
