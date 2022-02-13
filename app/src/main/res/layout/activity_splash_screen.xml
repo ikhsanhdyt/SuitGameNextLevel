@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.splash.SplashScreenActivity"
-    android:background="@color/orange">
+    android:background="@color/red_com">
 
 <LinearLayout
     android:layout_margin="68dp"
@@ -15,16 +15,10 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:src="@drawable/splash_screen1"
+        android:src="@drawable/logo"
         android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-
-    <ImageView
-        android:src="@drawable/splash_screen2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
 
 </LinearLayout>
 

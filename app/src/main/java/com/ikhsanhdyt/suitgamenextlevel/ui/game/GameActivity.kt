@@ -8,7 +8,6 @@ import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
@@ -72,7 +71,7 @@ class GameActivity : AppCompatActivity() {
         bindViews()
         getIntentData()
         suitUseCase = SuitUseCaseImpl()
-        showUIPlayer()
+        setUI()
         setOnClickListener()
     }
 
@@ -86,14 +85,26 @@ class GameActivity : AppCompatActivity() {
         gamePlayMode = intent.extras?.getInt(EXTRAS_GAME_MODE, 0) ?: 0
     }
 
-    private fun showUIPlayer() {
+    private fun setUI() {
         playerName = PlayerSharedPref(this).playerName
         binding.tvPlayer.text = playerName
 
         if (gamePlayMode == GAMEPLAY_MODE_VS_PLAYER) {
+            binding.constraintBgColor.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.green_player
+                )
+            )
             onSNACK(binding.root,"PLAYER 1 TURN")
             binding.tvEnemy.text = "Player 2"
         }else{
+            binding.constraintBgColor.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.red_com
+                )
+            )
             onSNACK(binding.root,"SELECT YOUR CHARACTER")
 
         }

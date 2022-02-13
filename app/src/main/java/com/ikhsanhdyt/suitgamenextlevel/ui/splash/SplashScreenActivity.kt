@@ -27,7 +27,6 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
         supportActionBar?.hide()
         setSplashTimer()
-
     }
 
     private fun setSplashTimer() {
