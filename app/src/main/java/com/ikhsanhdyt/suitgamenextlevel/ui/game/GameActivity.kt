@@ -399,10 +399,14 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun reset() {
+        if (gamePlayMode == GAMEPLAY_MODE_VS_PLAYER){
+            binding.tvSelectGamePlayer.visibility = View.VISIBLE
+        }
+
         binding.flBtnLeftBatu.isEnabled = true
         binding.flBtnLeftGunting.isEnabled = true
         binding.flBtnLeftKertas.isEnabled = true
-        binding.tvSelectGamePlayer.visibility = View.VISIBLE
+
         binding.flBtnLeftBatu.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
         binding.flBtnLeftGunting.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
         binding.flBtnLeftKertas.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
