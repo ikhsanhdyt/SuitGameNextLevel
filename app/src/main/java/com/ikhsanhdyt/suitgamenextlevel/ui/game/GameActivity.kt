@@ -2,12 +2,16 @@ package com.ikhsanhdyt.suitgamenextlevel.ui.game
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import com.ikhsanhdyt.suitgamenextlevel.R
 import com.ikhsanhdyt.suitgamenextlevel.databinding.ActivityGameBinding
 import com.ikhsanhdyt.suitgamenextlevel.enum.PlayerSide
@@ -16,8 +20,25 @@ import com.ikhsanhdyt.suitgamenextlevel.sharedPreferences.PlayerSharedPref
 import com.ikhsanhdyt.suitgamenextlevel.usecase.SuitUseCase
 import com.ikhsanhdyt.suitgamenextlevel.usecase.SuitUseCaseImpl
 import com.ikhsanhdyt.suitgamenextlevel.utils.DialogUtils
+import kotlin.random.Random
 
 class GameActivity : AppCompatActivity() {
+    //timer countdown for loading progress
+    private val timer: CountDownTimer by lazy {
+        object : CountDownTimer(2000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.ivVs.visibility = View.GONE
+            }
+
+            override fun onFinish() {
+                binding.progressBar.visibility = View.GONE
+                binding.ivVs.visibility = View.VISIBLE
+                checkWinner()
+            }
+        }
+    }
+
     //view binding
     private lateinit var binding: ActivityGameBinding
 
@@ -51,12 +72,8 @@ class GameActivity : AppCompatActivity() {
         bindViews()
         getIntentData()
         suitUseCase = SuitUseCaseImpl()
-        setState()
+        showUIPlayer()
         setOnClickListener()
-    }
-
-    private fun getIntentData() {
-        gamePlayMode = intent.extras?.getInt(EXTRAS_GAME_MODE, 0) ?: 0
     }
 
     private fun bindViews() {
@@ -65,25 +82,20 @@ class GameActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    private fun setState() {
-        if (gamePlayMode == GAMEPLAY_MODE_VS_PLAYER) {
-            Toast.makeText(this, getString(R.string.text_toast_player_1_turn), Toast.LENGTH_SHORT)
-                .show()
-            showUIPlayer(PlayerSide.PLAYER1, true)
-            showUIPlayer(PlayerSide.ENEMY, false)
-        } else {
-            showUIPlayer(PlayerSide.PLAYER1, true)
-
-        }
+    private fun getIntentData() {
+        gamePlayMode = intent.extras?.getInt(EXTRAS_GAME_MODE, 0) ?: 0
     }
 
-    private fun showUIPlayer(playerSide: PlayerSide, isEnable: Boolean) {
+    private fun showUIPlayer() {
         playerName = PlayerSharedPref(this).playerName
+        binding.tvPlayer.text = playerName
 
-        if (playerSide == PlayerSide.PLAYER1) {
-            binding.tvPlayer.text = playerName
-        } else {
+        if (gamePlayMode == GAMEPLAY_MODE_VS_PLAYER) {
+            onSNACK(binding.root,"PLAYER 1 TURN")
             binding.tvEnemy.text = "Player 2"
+        }else{
+            onSNACK(binding.root,"SELECT YOUR CHARACTER")
+
         }
     }
 
@@ -92,6 +104,13 @@ class GameActivity : AppCompatActivity() {
             binding.flBtnRightBatu.isEnabled = false
             binding.flBtnRightGunting.isEnabled = false
             binding.flBtnRightKertas.isEnabled = false
+            binding.tvSelectGameEnemy.setOnClickListener {
+                binding.flBtnRightBatu.isEnabled = false
+                binding.flBtnRightGunting.isEnabled = false
+                binding.flBtnRightKertas.isEnabled = false
+                binding.tvSelectGameEnemy.visibility = View.INVISIBLE
+                timer.start()
+            }
             binding.flBtnLeftBatu.setOnClickListener() {
                 player1 = SuitCharacter.ROCK.ordinal
                 setPlayerMovement(PlayerSide.PLAYER1, player1)
@@ -106,8 +125,7 @@ class GameActivity : AppCompatActivity() {
                     binding.tvSelectGamePlayer.visibility = View.INVISIBLE
                     binding.tvSelectGameEnemy.visibility = View.VISIBLE
                     binding.llEnemy.isEnabled = true
-                    binding.tvSelectGamePlayer.visibility = View.VISIBLE
-                    Toast.makeText(this, "Player 2 turn", Toast.LENGTH_SHORT).show()
+                    onSNACK(binding.root, "Player 2 turn")
                     binding.flBtnLeftBatu.setBackgroundColor(
                         ContextCompat.getColor(
                             this,
@@ -121,6 +139,7 @@ class GameActivity : AppCompatActivity() {
                 player1 = SuitCharacter.SCISSOR.ordinal
                 setPlayerMovement(PlayerSide.PLAYER1, player1)
                 binding.tvSelectGamePlayer.visibility = View.VISIBLE
+
                 binding.tvSelectGamePlayer.setOnClickListener {
                     binding.flBtnRightBatu.isEnabled = true
                     binding.flBtnRightGunting.isEnabled = true
@@ -131,8 +150,8 @@ class GameActivity : AppCompatActivity() {
                     binding.tvSelectGamePlayer.visibility = View.INVISIBLE
                     binding.tvSelectGameEnemy.visibility = View.VISIBLE
                     binding.llEnemy.isEnabled = true
-                    Toast.makeText(this, "Player 2 turn", Toast.LENGTH_SHORT).show()
-                    binding.flBtnLeftKertas.setBackgroundColor(
+                    onSNACK(binding.root, "Player 2 turn")
+                    binding.flBtnLeftGunting.setBackgroundColor(
                         ContextCompat.getColor(
                             this,
                             R.color.white
@@ -145,6 +164,7 @@ class GameActivity : AppCompatActivity() {
                 player1 = SuitCharacter.PAPER.ordinal
                 setPlayerMovement(PlayerSide.PLAYER1, player1)
                 binding.tvSelectGamePlayer.visibility = View.VISIBLE
+
                 binding.tvSelectGamePlayer.setOnClickListener {
                     binding.flBtnRightBatu.isEnabled = true
                     binding.flBtnRightGunting.isEnabled = true
@@ -155,7 +175,7 @@ class GameActivity : AppCompatActivity() {
                     binding.tvSelectGamePlayer.visibility = View.INVISIBLE
                     binding.tvSelectGameEnemy.visibility = View.VISIBLE
                     binding.llEnemy.isEnabled = true
-                    Toast.makeText(this, "Player 2 turn", Toast.LENGTH_SHORT).show()
+                    onSNACK(binding.root, "Player 2 turn")
                     binding.flBtnLeftKertas.setBackgroundColor(
                         ContextCompat.getColor(
                             this,
@@ -170,46 +190,44 @@ class GameActivity : AppCompatActivity() {
             binding.flBtnRightBatu.setOnClickListener {
                 enemy = SuitCharacter.ROCK.ordinal
                 setPlayerMovement(PlayerSide.ENEMY, enemy)
-                checkWinner()
             }
 
             binding.flBtnRightGunting.setOnClickListener {
                 enemy = SuitCharacter.SCISSOR.ordinal
                 setPlayerMovement(PlayerSide.ENEMY, enemy)
-                checkWinner()
             }
 
             binding.flBtnRightKertas.setOnClickListener {
                 enemy = SuitCharacter.PAPER.ordinal
                 setPlayerMovement(PlayerSide.ENEMY, enemy)
-                checkWinner()
             }
 
         } else {
             binding.flBtnLeftBatu.setOnClickListener() {
+                onSNACK(binding.root, "Player choose ROCK")
                 player1 = SuitCharacter.ROCK.ordinal
+                enemy = SuitCharacter.values()[Random.nextInt(0, 3)].ordinal
                 setPlayerMovement(PlayerSide.PLAYER1, player1)
                 setPlayerMovement(PlayerSide.ENEMY, enemy)
-                checkWinner()
-                setState()
+                timer.start()
             }
             binding.flBtnLeftGunting.setOnClickListener() {
+                onSNACK(binding.root, "Player choose SCISSOR")
                 player1 = SuitCharacter.SCISSOR.ordinal
+                enemy = SuitCharacter.values()[Random.nextInt(0, 3)].ordinal
                 setPlayerMovement(PlayerSide.PLAYER1, player1)
                 setPlayerMovement(PlayerSide.ENEMY, enemy)
-                checkWinner()
-                setState()
+                timer.start()
             }
             binding.flBtnLeftKertas.setOnClickListener() {
+                onSNACK(binding.root, "Player choose PAPER")
                 player1 = SuitCharacter.PAPER.ordinal
+                enemy = SuitCharacter.values()[Random.nextInt(0, 3)].ordinal
                 setPlayerMovement(PlayerSide.PLAYER1, player1)
                 setPlayerMovement(PlayerSide.ENEMY, enemy)
-                checkWinner()
-                setState()
+                timer.start()
             }
         }
-
-
     }
 
     private fun checkWinner() {
@@ -269,6 +287,7 @@ class GameActivity : AppCompatActivity() {
                     R.color.purple_200
                 )
             )
+
             binding.flBtnLeftGunting.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
@@ -380,6 +399,10 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun reset() {
+        binding.flBtnLeftBatu.isEnabled = true
+        binding.flBtnLeftGunting.isEnabled = true
+        binding.flBtnLeftKertas.isEnabled = true
+        binding.tvSelectGamePlayer.visibility = View.VISIBLE
         binding.flBtnLeftBatu.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
         binding.flBtnLeftGunting.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
         binding.flBtnLeftKertas.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
@@ -391,6 +414,21 @@ class GameActivity : AppCompatActivity() {
             )
         )
         binding.flBtnRightKertas.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
-        setState()
     }
+
+    fun onSNACK(view: View, title: String) {
+        //Snackbar(view)
+        val snackbar = Snackbar.make(
+            view, title,
+            Snackbar.LENGTH_LONG
+        ).setAction("Action", null)
+        val snackbarView = snackbar.view
+        snackbarView.setBackgroundColor(Color.YELLOW)
+        val textView =
+            snackbarView.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+        textView.setTextColor(Color.RED)
+        textView.textSize = 18f
+        snackbar.show()
+    }
+
 }

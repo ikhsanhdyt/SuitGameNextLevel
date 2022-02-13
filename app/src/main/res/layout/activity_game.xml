@@ -170,6 +170,17 @@
         android:layout_height="170dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/ic_versus"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/ll_enemy"
+        app:layout_constraintStart_toEndOf="@+id/ll_player"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/ll_enemy"
         app:layout_constraintStart_toEndOf="@+id/ll_player"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
